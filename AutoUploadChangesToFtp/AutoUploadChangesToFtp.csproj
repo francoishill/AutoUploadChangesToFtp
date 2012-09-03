@@ -161,6 +161,9 @@
     <Compile Include="..\..\SharedClasses\NetworkInteropSerializedClasses\InfoTransferred.cs">
       <Link>InfoTransferred.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\ProcessesInterop.cs">
+      <Link>ProcessesInterop.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\RegistryInterop.cs">
       <Link>RegistryInterop.cs</Link>
     </Compile>
@@ -182,16 +185,12 @@
     <Compile Include="..\..\SharedClasses\ThreadingInterop.cs">
       <Link>ThreadingInterop.cs</Link>
     </Compile>
-    <Compile Include="..\..\SharedClasses\UserMessageBox.cs">
-      <Link>UserMessageBox.cs</Link>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\..\SharedClasses\UserMessageBox.designer.cs">
-      <Link>UserMessageBox.designer.cs</Link>
-      <DependentUpon>UserMessageBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="..\..\SharedClasses\UserMessages.cs">
       <Link>UserMessages.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\UserMessages.designer.cs">
+      <Link>UserMessages.designer.cs</Link>
+      <DependentUpon>UserMessages.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\SharedClasses\WebInterop.cs">
       <Link>WebInterop.cs</Link>
@@ -231,9 +230,9 @@
       <Link>MiniDownloadBarForm.resx</Link>
       <DependentUpon>MiniDownloadBarForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\SharedClasses\UserMessageBox.resx">
-      <Link>UserMessageBox.resx</Link>
-      <DependentUpon>UserMessageBox.cs</DependentUpon>
+    <EmbeddedResource Include="..\..\SharedClasses\UserMessages.resx">
+      <Link>UserMessages.resx</Link>
+      <DependentUpon>UserMessages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
