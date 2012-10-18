@@ -91,6 +91,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedClasses\AppTypeIndependant.cs">
+      <Link>AppTypeIndependant.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\AutoUpdating.cs">
       <Link>AutoUpdating.cs</Link>
     </Compile>
@@ -169,6 +172,9 @@
     </Compile>
     <Compile Include="..\..\SharedClasses\ProcessesInterop.cs">
       <Link>ProcessesInterop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\ReflectionInterop.cs">
+      <Link>ReflectionInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\RegistryInterop.cs">
       <Link>RegistryInterop.cs</Link>
