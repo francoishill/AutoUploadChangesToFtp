@@ -170,8 +170,24 @@
     <Compile Include="..\..\SharedClasses\NetworkInteropSerializedClasses\InfoTransferred.cs">
       <Link>InfoTransferred.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\PickItemForm.cs">
+      <Link>PickItemForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\PickItemForm.designer.cs">
+      <Link>PickItemForm.designer.cs</Link>
+      <DependentUpon>PickItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="..\..\SharedClasses\ProcessesInterop.cs">
       <Link>ProcessesInterop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\ProgressForm.cs">
+      <Link>ProgressForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\ProgressForm.designer.cs">
+      <Link>ProgressForm.designer.cs</Link>
+      <DependentUpon>ProgressForm.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\SharedClasses\ReflectionInterop.cs">
       <Link>ReflectionInterop.cs</Link>
@@ -245,6 +261,14 @@
     <EmbeddedResource Include="..\..\SharedClasses\MiniDownloadBarForm.resx">
       <Link>MiniDownloadBarForm.resx</Link>
       <DependentUpon>MiniDownloadBarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\SharedClasses\PickItemForm.resx">
+      <Link>PickItemForm.resx</Link>
+      <DependentUpon>PickItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\SharedClasses\ProgressForm.resx">
+      <Link>ProgressForm.resx</Link>
+      <DependentUpon>ProgressForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\SharedClasses\UserMessages.resx">
       <Link>UserMessages.resx</Link>

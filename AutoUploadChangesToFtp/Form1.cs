@@ -344,6 +344,24 @@ namespace AutoUploadChangesToFtp
 			textBox1.Clear();
 			AppendTextbox("Cleared all messages.", false);
 		}
+
+		private void buttonRabaseMetadata_Click(object sender, EventArgs e)
+		{
+			if (linkedFolders.Count == 0)
+			{
+				UserMessages.ShowWarningMessage("No linked folders yet");
+				return;
+			}
+			LinkedFolderToFtp pickedItem =
+				linkedFolders.Count > 1
+				? PickItemForm.PickItem<LinkedFolderToFtp>(linkedFolders, "Please select a linked folder to rebase metadata.", null)
+				: (UserMessages.Confirm("Only one linked folder, confirm to rebase it?") ? linkedFolders[0] : null);
+			if (pickedItem != null)
+			{
+				pickedItem.RegenerateFilesList();
+				pickedItem.SaveDetails();
+			}
+		}
 	}
 
 	public class LinkedFolderToFtp
@@ -371,6 +389,12 @@ namespace AutoUploadChangesToFtp
 			this.ExcludedRelativeFolders = ExcludedRelativeFolders;
 			RegenerateFilesList();
 		}
+
+		public override string ToString()
+		{
+			return this.LocalRootDirectory + "(" + this.FtpRootUrl + ")";
+		}
+
 		public void RegenerateFilesList()
 		{
 			var files = new List<FileDetails>();

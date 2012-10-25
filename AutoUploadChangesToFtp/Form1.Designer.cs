@@ -48,6 +48,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.numericUpDownIntervalForChecking = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
+			this.buttonRabaseMetadata = new System.Windows.Forms.Button();
 			this.contextMenuStripNotifyIcon.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownIntervalForChecking)).BeginInit();
 			this.SuspendLayout();
@@ -220,11 +221,22 @@
 			this.label2.TabIndex = 9;
 			this.label2.Text = "minutes";
 			// 
+			// buttonRabaseMetadata
+			// 
+			this.buttonRabaseMetadata.Location = new System.Drawing.Point(328, 14);
+			this.buttonRabaseMetadata.Name = "buttonRabaseMetadata";
+			this.buttonRabaseMetadata.Size = new System.Drawing.Size(110, 21);
+			this.buttonRabaseMetadata.TabIndex = 10;
+			this.buttonRabaseMetadata.Text = "Rebase metadata";
+			this.buttonRabaseMetadata.UseVisualStyleBackColor = true;
+			this.buttonRabaseMetadata.Click += new System.EventHandler(this.buttonRabaseMetadata_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(603, 353);
+			this.Controls.Add(this.buttonRabaseMetadata);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.numericUpDownIntervalForChecking);
 			this.Controls.Add(this.label1);
@@ -269,6 +281,7 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.NumericUpDown numericUpDownIntervalForChecking;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Button buttonRabaseMetadata;
 	}
 }
 
