@@ -22,12 +22,17 @@ namespace AutoUploadChangesToFtp
 				.SetValue(null, new Icon(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("AutoUploadChangesToFtp.app.ico")));
 
 			Form mainForm = new Form1();
-			AutoUpdating.CheckForUpdates(
+			AutoUpdating.CheckForUpdates_ExceptionHandler(
+				delegate
+				{
+					ThreadingInterop.UpdateGuiFromThread(mainForm, () => mainForm.Text += " (up to date, version " + AutoUpdating.GetThisAppVersionString() + ")");
+				});
+			/*AutoUpdating.CheckForUpdates(
 				//AutoUpdatingForm.CheckForUpdates(
 				//exitApplicationAction: () => Application.Exit(),
 				ActionIfUptoDate_Versionstring: (installedversion) => ThreadingInterop.UpdateGuiFromThread(mainForm, () => mainForm.Text += " (up to date, version " + installedversion + ")"));//,
 				//ActionIfUnableToCheckForUpdates: (errmsg) => ThreadingInterop.UpdateGuiFromThread(mainForm, () => mainForm.Text += " (" + errmsg + ")"),
-				//ShowModally: true);
+				//ShowModally: true);*/
 			Application.Run(mainForm);
 		}
 	}
