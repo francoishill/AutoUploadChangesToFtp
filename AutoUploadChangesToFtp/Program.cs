@@ -21,7 +21,7 @@ namespace AutoUploadChangesToFtp
 			typeof(Form).GetField("defaultIcon", BindingFlags.NonPublic | BindingFlags.Static)
 				.SetValue(null, new Icon(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("AutoUploadChangesToFtp.app.ico")));
 
-			Form mainForm = new Form1();
+			Form mainForm = new MainForm();
 			AutoUpdating.CheckForUpdates_ExceptionHandler(
 				delegate
 				{

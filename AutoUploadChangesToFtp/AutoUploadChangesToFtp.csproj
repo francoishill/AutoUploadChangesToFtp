@@ -91,6 +91,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedClasses\AboutWindow2.xaml.cs">
+      <Link>AboutWindow2.xaml.cs</Link>
+      <DependentUpon>AboutWindow2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\..\SharedClasses\AppTypeIndependant.cs">
       <Link>AppTypeIndependant.cs</Link>
     </Compile>
@@ -244,11 +248,11 @@
       <Link>WpfNotificationWindow.xaml.cs</Link>
       <DependentUpon>WpfNotificationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -284,8 +288,8 @@
       <Link>UserMessages.resx</Link>
       <DependentUpon>UserMessages.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -310,6 +314,11 @@
     <EmbeddedResource Include="app.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="..\..\SharedClasses\AboutWindow2.xaml">
+      <Link>AboutWindow2.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\..\SharedClasses\UnhandledExceptionsWindow.xaml">
       <Link>UnhandledExceptionsWindow.xaml</Link>
       <Generator>MSBuild:Compile</Generator>

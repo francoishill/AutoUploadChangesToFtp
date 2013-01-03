@@ -12,7 +12,7 @@ using SharedClasses;
 
 namespace AutoUploadChangesToFtp
 {
-	public partial class Form1 : Form
+	public partial class MainForm : Form
 	{
 		private readonly TimeSpan DefaultInterval = TimeSpan.FromMinutes(1);
 
@@ -25,7 +25,7 @@ namespace AutoUploadChangesToFtp
 		ProgressChangedEventHandler progressChangedHandler;
 		private string filePathForIntervalMinutes = SettingsInterop.GetFullFilePathInLocalAppdata("intervaltocheck.fjset", "AutoUploadChangesToFtp");
 
-		public Form1()
+		public MainForm()
 		{
 			InitializeComponent();
 			notifyIconTrayIcon.Icon = this.Icon;
@@ -361,6 +361,15 @@ namespace AutoUploadChangesToFtp
 				pickedItem.RegenerateFilesList();
 				pickedItem.SaveDetails();
 			}
+		}
+
+		private void labelAbout_Click(object sender, EventArgs e)
+		{
+			AboutWindow2.ShowAboutWindow(new System.Collections.ObjectModel.ObservableCollection<DisplayItem>()
+			{
+				new DisplayItem("Author", "Francois Hill"),
+				new DisplayItem("Icon(s) obtained from", null)//"http://www.icons-land.com", "http://www.icons-land.com/vista-base-software-icons.php")
+			});
 		}
 	}
 

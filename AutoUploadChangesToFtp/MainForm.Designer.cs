@@ -1,6 +1,6 @@
 ﻿namespace AutoUploadChangesToFtp
 {
-	partial class Form1
+	partial class MainForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -49,6 +49,7 @@
 			this.numericUpDownIntervalForChecking = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
 			this.buttonRabaseMetadata = new System.Windows.Forms.Button();
+			this.labelAbout = new System.Windows.Forms.Label();
 			this.contextMenuStripNotifyIcon.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownIntervalForChecking)).BeginInit();
 			this.SuspendLayout();
@@ -140,7 +141,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.progressBar1.Location = new System.Drawing.Point(12, 324);
 			this.progressBar1.Name = "progressBar1";
-			this.progressBar1.Size = new System.Drawing.Size(579, 17);
+			this.progressBar1.Size = new System.Drawing.Size(527, 17);
 			this.progressBar1.TabIndex = 2;
 			// 
 			// labelStatusMessage
@@ -231,11 +232,24 @@
 			this.buttonRabaseMetadata.UseVisualStyleBackColor = true;
 			this.buttonRabaseMetadata.Click += new System.EventHandler(this.buttonRabaseMetadata_Click);
 			// 
-			// Form1
+			// labelAbout
+			// 
+			this.labelAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelAbout.AutoSize = true;
+			this.labelAbout.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.labelAbout.Location = new System.Drawing.Point(546, 324);
+			this.labelAbout.Name = "labelAbout";
+			this.labelAbout.Size = new System.Drawing.Size(35, 13);
+			this.labelAbout.TabIndex = 11;
+			this.labelAbout.Text = "A&bout";
+			this.labelAbout.Click += new System.EventHandler(this.labelAbout_Click);
+			// 
+			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(603, 353);
+			this.Controls.Add(this.labelAbout);
 			this.Controls.Add(this.buttonRabaseMetadata);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.numericUpDownIntervalForChecking);
@@ -248,7 +262,7 @@
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.buttonCheckForChanges);
 			this.DoubleBuffered = true;
-			this.Name = "Form1";
+			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Upload changes to FTP";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -282,6 +296,7 @@
 		private System.Windows.Forms.NumericUpDown numericUpDownIntervalForChecking;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button buttonRabaseMetadata;
+		private System.Windows.Forms.Label labelAbout;
 	}
 }
 
