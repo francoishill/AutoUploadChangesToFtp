@@ -210,11 +210,16 @@ namespace AutoUploadChangesToFtp
 
 		private void buttonCheckForChanges_Click(object sender, EventArgs e)
 		{
-			CheckForChanges();
+			CheckForChanges(true);
+		}
+
+		private void buttonAutoUploadChanged_Click(object sender, EventArgs e)
+		{
+			CheckForChanges(false);
 		}
 
 		private bool IsBusyChecking = false;
-		private void CheckForChanges()
+		private void CheckForChanges(bool confirmIfChangesBeforeUpload = true)
 		{
 			ThreadingInterop.PerformVoidFunctionSeperateThread(() =>
 			{
@@ -236,7 +241,7 @@ namespace AutoUploadChangesToFtp
 					foreach (var linkedFol in linkedFolders)
 					{
 						var currentDetails = new LinkedFolderToFtp(linkedFol.LocalRootDirectory, linkedFol.FtpRootUrl, linkedFol.FtpUsername, linkedFol.FtpPassword, linkedFol.ExcludedRelativeFolders);
-						if (currentDetails.CompareToCachedAndUploadChanges(textFeedbackHandler, progressChangedHandler, this))
+						if (currentDetails.CompareToCachedAndUploadChanges(confirmIfChangesBeforeUpload, textFeedbackHandler, progressChangedHandler, this))
 							anyFolderHasChanges = true;
 					}
 					notifyIconTrayIcon.Icon = anyFolderHasChanges ? hasChangesTrayIcon : originalNoChangesTrayIcon;
@@ -276,7 +281,12 @@ namespace AutoUploadChangesToFtp
 
 		private void checkForchangesToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			CheckForChanges();
+			CheckForChanges(true);
+		}
+
+		private void autouploadChangesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			CheckForChanges(false);
 		}
 
 		private void addMoreLinkedDirectoriesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -562,7 +572,7 @@ namespace AutoUploadChangesToFtp
 		}
 		public override int GetHashCode() { return 0; }
 
-		public bool CompareToCachedAndUploadChanges(TextFeedbackEventHandler textFeedbackHandler = null, ProgressChangedEventHandler progressChangedHandler = null, Form formToCheckIfVisible = null)
+		public bool CompareToCachedAndUploadChanges(bool confirmIfChangesBeforeUpload, TextFeedbackEventHandler textFeedbackHandler = null, ProgressChangedEventHandler progressChangedHandler = null, Form formToCheckIfVisible = null)
 		{
 			bool hasChanges = false;
 
@@ -594,10 +604,13 @@ namespace AutoUploadChangesToFtp
 
 				hasChanges = changedFiles.Count > 0 || newFiles.Count > 0 || deletedFiles.Count > 0;
 
-				if (changedFiles.Count > 0 && (formToCheckIfVisible == null || formToCheckIfVisible.Visible) && UserMessages.Confirm(string.Format("There are {0} changed files, continue to upload them to the ftp site?{1}{2}", changedFiles.Count, Environment.NewLine,
-					string.Join(Environment.NewLine, changedFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? changedFiles.Keys : changedFiles.Keys.Take(cMaxFilesToShowInUsermessages))
-					+ (changedFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? "" : Environment.NewLine + "..." + Environment.NewLine + "and another " + (changedFiles.Keys.Count - cMaxFilesToShowInUsermessages) + " files")
-					)))
+				string confirmMessage = 
+					string.Format("There are {0} changed files, continue to upload them to the ftp site?{1}{2}", changedFiles.Count, Environment.NewLine,
+						string.Join(Environment.NewLine, changedFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? changedFiles.Keys : changedFiles.Keys.Take(cMaxFilesToShowInUsermessages))
+						+ (changedFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? "" : Environment.NewLine + "..." + Environment.NewLine + "and another " + (changedFiles.Keys.Count - cMaxFilesToShowInUsermessages) + " files"));
+
+				if (changedFiles.Count > 0 && (!confirmIfChangesBeforeUpload ||
+					((formToCheckIfVisible == null || formToCheckIfVisible.Visible) && UserMessages.Confirm(confirmMessage))))
 				{
 					foreach (var cf in changedFiles.Keys)
 					{
@@ -623,10 +636,12 @@ namespace AutoUploadChangesToFtp
 					return true;
 				}
 
-				if (newFiles.Count > 0 && (formToCheckIfVisible == null || formToCheckIfVisible.Visible) && UserMessages.Confirm(string.Format("There are {0} added files, continue to upload them to the ftp site?{1}{2}", newFiles.Count, Environment.NewLine,
-					string.Join(Environment.NewLine, newFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? newFiles.Keys : newFiles.Keys.Take(cMaxFilesToShowInUsermessages))
-					+ (newFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? "" : Environment.NewLine + "..." + Environment.NewLine + "and another " + (newFiles.Keys.Count - cMaxFilesToShowInUsermessages) + " files")
-					)))
+				confirmMessage = 
+					string.Format("There are {0} added files, continue to upload them to the ftp site?{1}{2}", newFiles.Count, Environment.NewLine,
+						string.Join(Environment.NewLine, newFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? newFiles.Keys : newFiles.Keys.Take(cMaxFilesToShowInUsermessages))
+						+ (newFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? "" : Environment.NewLine + "..." + Environment.NewLine + "and another " + (newFiles.Keys.Count - cMaxFilesToShowInUsermessages) + " files"));
+				if (newFiles.Count > 0 && (!confirmIfChangesBeforeUpload
+					|| ((formToCheckIfVisible == null || formToCheckIfVisible.Visible) && UserMessages.Confirm(confirmMessage))))
 				{
 					foreach (var nf in newFiles.Keys)
 					{
@@ -652,10 +667,12 @@ namespace AutoUploadChangesToFtp
 					return true;
 				}
 
-				if (deletedFiles.Count > 0 && (formToCheckIfVisible == null || formToCheckIfVisible.Visible) && UserMessages.Confirm(string.Format("There are {0} deleted files, continue to delete them from the ftp site?{1}{2}", deletedFiles.Count, Environment.NewLine,
-					string.Join(Environment.NewLine, deletedFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? deletedFiles.Keys : deletedFiles.Keys.Take(cMaxFilesToShowInUsermessages))
-					+ (deletedFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? "" : Environment.NewLine + "..." + Environment.NewLine + "and another " + (deletedFiles.Keys.Count - cMaxFilesToShowInUsermessages) + " files")
-					)))
+				confirmMessage =
+					string.Format("There are {0} deleted files, continue to delete them from the ftp site?{1}{2}", deletedFiles.Count, Environment.NewLine,
+						string.Join(Environment.NewLine, deletedFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? deletedFiles.Keys : deletedFiles.Keys.Take(cMaxFilesToShowInUsermessages))
+						+ (deletedFiles.Keys.Count <= cMaxFilesToShowInUsermessages ? "" : Environment.NewLine + "..." + Environment.NewLine + "and another " + (deletedFiles.Keys.Count - cMaxFilesToShowInUsermessages) + " files"));
+				if (deletedFiles.Count > 0 && (!confirmIfChangesBeforeUpload
+					|| ((formToCheckIfVisible == null || formToCheckIfVisible.Visible) && UserMessages.Confirm(confirmMessage))))
 				{
 					foreach (var df in deletedFiles.Keys)
 					{
@@ -679,7 +696,7 @@ namespace AutoUploadChangesToFtp
 				}
 
 				this.SaveDetails();
-
+				return false;//We already uploaded all changes
 			}
 			else
 				TextFeedbackEventArgs.RaiseTextFeedbackEvent_Ifnotnull(null, textFeedbackHandler, "No changes for " + this.LocalRootDirectory + ".", TextFeedbackType.Subtle);

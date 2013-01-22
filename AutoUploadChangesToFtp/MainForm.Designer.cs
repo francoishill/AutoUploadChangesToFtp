@@ -33,6 +33,7 @@
 			this.contextMenuStripNotifyIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkForchangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.autouploadChangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.addMoreLinkedDirectoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -50,6 +51,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.buttonRabaseMetadata = new System.Windows.Forms.Button();
 			this.labelAbout = new System.Windows.Forms.Label();
+			this.buttonAutoUploadChanged = new System.Windows.Forms.Button();
 			this.contextMenuStripNotifyIcon.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownIntervalForChecking)).BeginInit();
 			this.SuspendLayout();
@@ -66,12 +68,13 @@
 			this.contextMenuStripNotifyIcon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showToolStripMenuItem,
             this.checkForchangesToolStripMenuItem,
+            this.autouploadChangesToolStripMenuItem,
             this.toolStripSeparator1,
             this.addMoreLinkedDirectoriesToolStripMenuItem,
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
 			this.contextMenuStripNotifyIcon.Name = "contextMenuStripNotifyIcon";
-			this.contextMenuStripNotifyIcon.Size = new System.Drawing.Size(221, 104);
+			this.contextMenuStripNotifyIcon.Size = new System.Drawing.Size(221, 148);
 			// 
 			// showToolStripMenuItem
 			// 
@@ -86,6 +89,13 @@
 			this.checkForchangesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
 			this.checkForchangesToolStripMenuItem.Text = "Check for &changes";
 			this.checkForchangesToolStripMenuItem.Click += new System.EventHandler(this.checkForchangesToolStripMenuItem_Click);
+			// 
+			// autouploadChangesToolStripMenuItem
+			// 
+			this.autouploadChangesToolStripMenuItem.Name = "autouploadChangesToolStripMenuItem";
+			this.autouploadChangesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+			this.autouploadChangesToolStripMenuItem.Text = "Auto &upload changes";
+			this.autouploadChangesToolStripMenuItem.Click += new System.EventHandler(this.autouploadChangesToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
@@ -117,7 +127,7 @@
 			this.buttonCheckForChanges.Name = "buttonCheckForChanges";
 			this.buttonCheckForChanges.Size = new System.Drawing.Size(120, 23);
 			this.buttonCheckForChanges.TabIndex = 0;
-			this.buttonCheckForChanges.Text = "Check for changes";
+			this.buttonCheckForChanges.Text = "&Check for changes";
 			this.buttonCheckForChanges.UseVisualStyleBackColor = true;
 			this.buttonCheckForChanges.Click += new System.EventHandler(this.buttonCheckForChanges_Click);
 			// 
@@ -172,7 +182,7 @@
 			// 
 			// buttonChangeLinkedFolders
 			// 
-			this.buttonChangeLinkedFolders.Location = new System.Drawing.Point(163, 13);
+			this.buttonChangeLinkedFolders.Location = new System.Drawing.Point(262, 13);
 			this.buttonChangeLinkedFolders.Name = "buttonChangeLinkedFolders";
 			this.buttonChangeLinkedFolders.Size = new System.Drawing.Size(124, 23);
 			this.buttonChangeLinkedFolders.TabIndex = 5;
@@ -224,7 +234,7 @@
 			// 
 			// buttonRabaseMetadata
 			// 
-			this.buttonRabaseMetadata.Location = new System.Drawing.Point(328, 14);
+			this.buttonRabaseMetadata.Location = new System.Drawing.Point(392, 15);
 			this.buttonRabaseMetadata.Name = "buttonRabaseMetadata";
 			this.buttonRabaseMetadata.Size = new System.Drawing.Size(110, 21);
 			this.buttonRabaseMetadata.TabIndex = 10;
@@ -244,11 +254,22 @@
 			this.labelAbout.Text = "A&bout";
 			this.labelAbout.Click += new System.EventHandler(this.labelAbout_Click);
 			// 
+			// buttonAutoUploadChanged
+			// 
+			this.buttonAutoUploadChanged.Location = new System.Drawing.Point(133, 13);
+			this.buttonAutoUploadChanged.Name = "buttonAutoUploadChanged";
+			this.buttonAutoUploadChanged.Size = new System.Drawing.Size(95, 23);
+			this.buttonAutoUploadChanged.TabIndex = 12;
+			this.buttonAutoUploadChanged.Text = "&Upload changes";
+			this.buttonAutoUploadChanged.UseVisualStyleBackColor = true;
+			this.buttonAutoUploadChanged.Click += new System.EventHandler(this.buttonAutoUploadChanged_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(603, 353);
+			this.Controls.Add(this.buttonAutoUploadChanged);
 			this.Controls.Add(this.labelAbout);
 			this.Controls.Add(this.buttonRabaseMetadata);
 			this.Controls.Add(this.label2);
@@ -297,6 +318,8 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button buttonRabaseMetadata;
 		private System.Windows.Forms.Label labelAbout;
+		private System.Windows.Forms.Button buttonAutoUploadChanged;
+		private System.Windows.Forms.ToolStripMenuItem autouploadChangesToolStripMenuItem;
 	}
 }
 
