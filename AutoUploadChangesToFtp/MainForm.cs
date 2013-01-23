@@ -394,7 +394,6 @@ namespace AutoUploadChangesToFtp
 		public FileDetails[] Files;
 
 		public List<string> ExcludedRelativeFolders;
-		//TODO: Add support for excluded files
 		//public List<string> ExcludedFiles;
 
 		public LinkedFolderToFtp() { }
@@ -420,7 +419,6 @@ namespace AutoUploadChangesToFtp
 			string pathNoSlash = LocalRootDirectory;
 			foreach (var f in Directory.GetFiles(pathNoSlash, "*", SearchOption.AllDirectories))
 			{
-				//TODO: Must maybe give user option to ignore .svn or not
 				if (f.IndexOf(".svn", StringComparison.InvariantCultureIgnoreCase) == -1
 					&& !MustPathBeExcluded(FileDetails.GetRelativePath(pathNoSlash, f)))
 					files.Add(new FileDetails(pathNoSlash, f));
