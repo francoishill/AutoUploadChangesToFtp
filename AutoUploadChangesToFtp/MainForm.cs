@@ -14,6 +14,7 @@ namespace AutoUploadChangesToFtp
 {
 	public partial class MainForm : Form
 	{
+		private const string cThisAppName = "AutoUploadChangesToFtp";
 		private readonly TimeSpan DefaultInterval = TimeSpan.FromMinutes(1);
 
 		private Icon originalNoChangesTrayIcon = null;
@@ -58,6 +59,35 @@ namespace AutoUploadChangesToFtp
 			{
 				UpdateProgess((int)Math.Truncate((double)100 * (double)e.CurrentValue / (double)e.MaximumValue));
 			};
+
+			this.HandleCreated += new EventHandler(MainForm_HandleCreated);
+		}
+
+		private void Form1_Shown(object sender, EventArgs e)
+		{
+			this.HideThisForm();
+		}
+
+		private void MainForm_HandleCreated(object sender, EventArgs e)
+		{
+			if (!Win32Api.RegisterHotKey(this.Handle, Win32Api.Hotkey1, Win32Api.MOD_WIN, (uint)Keys.C))
+				UserMessages.ShowWarningMessage("AutoUploadChangesToFtp could not register hotkey Win + C");
+			else if (!Win32Api.RegisterHotKey(this.Handle, Win32Api.Hotkey2, Win32Api.MOD_WIN, (int)Keys.A))
+				UserMessages.ShowWarningMessage(cThisAppName + " could not register hotkey WinKey + A");
+			else
+				notifyIconTrayIcon.Text = "Show/hide = WinKey + C, Auto upload = WinKey + A";
+		}
+
+		protected override void WndProc(ref Message msg)
+		{
+			if (msg.Msg == Win32Api.WM_HOTKEY)
+			{
+				if (msg.WParam == new IntPtr(Win32Api.Hotkey1))
+					ToggleShowHide();
+				else if (msg.WParam == new IntPtr(Win32Api.Hotkey2))
+					CheckForChanges(false);
+			}
+			base.WndProc(ref msg);
 		}
 
 		private void SaveInterval()
@@ -332,21 +362,6 @@ namespace AutoUploadChangesToFtp
 		private void HideThisForm()
 		{
 			this.Hide();
-		}
-
-		private void Form1_Shown(object sender, EventArgs e)
-		{
-			this.HideThisForm();
-			if (!Win32Api.RegisterHotKey(this.Handle, Win32Api.Hotkey1, Win32Api.MOD_WIN, (uint)Keys.C))
-				UserMessages.ShowWarningMessage("AutoUploadChangesToFtp could not register hotkey Win + C");
-		}
-
-		protected override void WndProc(ref Message m)
-		{
-			if (m.Msg == Win32Api.WM_HOTKEY)
-				if (m.WParam == new IntPtr(Win32Api.Hotkey1))
-					ToggleShowHide();
-			base.WndProc(ref m);
 		}
 
 		private void linkLabel1_Click(object sender, EventArgs e)

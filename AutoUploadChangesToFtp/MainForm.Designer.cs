@@ -74,7 +74,7 @@
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
 			this.contextMenuStripNotifyIcon.Name = "contextMenuStripNotifyIcon";
-			this.contextMenuStripNotifyIcon.Size = new System.Drawing.Size(221, 148);
+			this.contextMenuStripNotifyIcon.Size = new System.Drawing.Size(221, 126);
 			// 
 			// showToolStripMenuItem
 			// 
