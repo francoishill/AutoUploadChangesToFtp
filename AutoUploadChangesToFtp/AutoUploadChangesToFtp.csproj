@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,7 +20,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\Binaries\AutoUploadChangesToFtp\obj\Debug\x86</BaseIntermediateOutputPath>
+    <OutputPath>..\..\..\..\Binaries\AutoUploadChangesToFtp\bin\Debug\x86</OutputPath>
     <DefineConstants>TRACE;DEBUG;NOTUSEINTERCEPTOR,WINFORMS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,7 +31,8 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\Binaries\AutoUploadChangesToFtp\obj\Release\x86</BaseIntermediateOutputPath>
+    <OutputPath>..\..\..\..\Binaries\AutoUploadChangesToFtp\bin\Release\x86</OutputPath>
     <DefineConstants>TRACE;NOTUSEINTERCEPTOR,WINFORMS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -41,7 +43,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\Binaries\AutoUploadChangesToFtp\obj\Debug\AnyCPU</BaseIntermediateOutputPath>
+    <OutputPath>..\..\..\..\Binaries\AutoUploadChangesToFtp\bin\Debug\AnyCPU</OutputPath>
     <DefineConstants>TRACE;DEBUG;NOTUSEINTERCEPTOR,WINFORMS</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,7 +61,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>bin\Release\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\Binaries\AutoUploadChangesToFtp\obj\Release\AnyCPU</BaseIntermediateOutputPath>
+    <OutputPath>..\..\..\..\Binaries\AutoUploadChangesToFtp\bin\Release\AnyCPU</OutputPath>
     <DefineConstants>TRACE;NOTUSEINTERCEPTOR,WINFORMS</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>

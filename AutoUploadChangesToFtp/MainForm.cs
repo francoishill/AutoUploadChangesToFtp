@@ -273,6 +273,7 @@ namespace AutoUploadChangesToFtp
 						var currentDetails = new LinkedFolderToFtp(linkedFol.LocalRootDirectory, linkedFol.FtpRootUrl, linkedFol.FtpUsername, linkedFol.FtpPassword, linkedFol.ExcludedRelativeFolders);
 						if (currentDetails.CompareToCachedAndUploadChanges(confirmIfChangesBeforeUpload, textFeedbackHandler, progressChangedHandler, this))
 							anyFolderHasChanges = true;
+						currentDetails = null;
 					}
 					notifyIconTrayIcon.Icon = anyFolderHasChanges ? hasChangesTrayIcon : originalNoChangesTrayIcon;
 				}
@@ -421,6 +422,14 @@ namespace AutoUploadChangesToFtp
 			this.FtpPassword = FtpPassword;
 			this.ExcludedRelativeFolders = ExcludedRelativeFolders;
 			RegenerateFilesList();
+		}
+		~LinkedFolderToFtp()
+		{
+			LocalRootDirectory = null;
+			FtpRootUrl = null;
+			FtpUsername = null;
+			FtpPassword = null;
+			Files = null;
 		}
 
 		public override string ToString()
@@ -747,6 +756,10 @@ namespace AutoUploadChangesToFtp
 			this.FileSize = tmpFI.Length;
 			this.LastWriteLocal = tmpFI.LastWriteTime;
 			this.LastWriteLocal.AddMilliseconds(-this.LastWriteLocal.Millisecond);
+		}
+		~FileDetails()
+		{
+			RelativePath = null;
 		}
 
 		public static string GetRelativePath(string basePath, string fullFilePath)
